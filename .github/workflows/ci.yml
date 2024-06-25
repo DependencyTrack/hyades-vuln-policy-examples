@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+permissions: { }
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # tag=v4.1.7         
+    - name: Validate Against Schema
+      uses: dsanders11/json-schema-validate-action@ec60131eddf6f51ed0c737fdcd28616ae1a0e564 # tag=v1.2.0
+      with:
+        fail-on-invalid: true
+        schema: ./vuln-policy.schema.json
+        files: ./*.yml
