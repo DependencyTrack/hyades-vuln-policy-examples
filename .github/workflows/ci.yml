@@ -23,4 +23,4 @@ jobs:
       with:
         fail-on-invalid: true
         schema: ./vuln-policy.schema.json
-        files: ./*.yml
+        files: ./*.yaml
